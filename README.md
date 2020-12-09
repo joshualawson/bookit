@@ -21,7 +21,7 @@ npm run watch
 ## Debugging
 
 ### Firefox
-Open the about:debugging page, click "This Firefox" (in newer versions of Firefox), click "Load Temporary Add-on", then select the mainfest.json file in your extension's directory.
+Open the [about:debugging](about:debugging) page, click "This Firefox" (in newer versions of Firefox), click "Load Temporary Add-on", then select the mainfest.json file in your extension's directory.
 
 ### Chrome
 Coming soon...
