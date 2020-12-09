@@ -6,6 +6,18 @@ A browser extension to bookmark a "tab" as you read, when a tab is toggled to on
 
 Currently not released via the Firefox or Chrome extension stores, will look at doing that shortly, so manual install for now using the debugger.
 
+## Building
+
+Building the project as a one off
+```sh
+npm run build
+```
+
+Watching the files for changes and auto building
+```sh
+npm run watch
+```
+
 ## Debugging
 
 ### Firefox
