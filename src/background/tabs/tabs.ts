@@ -49,6 +49,8 @@ export class Tabs {
 
             browser.tabs.sendMessage(tab.getTabId(), { "event": "REQUEST_SCROLL_POS" }).then((resp) => {
                 tab.setScrollPos(resp.scroll_pos);
+            }).catch((error) => {
+                console.log(error);
             })
 
             return

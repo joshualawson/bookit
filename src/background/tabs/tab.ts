@@ -17,9 +17,12 @@ export class Tab {
         scrollPos: number,
         id?: string
     ) {
-        if (id == null) {
+        if (!id) {
             this.id = uuidv4();
+        } else {
+            this.id = id
         }
+
         this.tabId = tabId;
         this.active = active;
         this.url = url;
@@ -89,6 +92,8 @@ export class Tab {
             }
 
             browser.storage.sync.set(data)
+        }).catch((error) => {
+            console.log(error);
         })
     }
 }

@@ -12,6 +12,12 @@ class Bookit {
         });
 
         browser.runtime.onMessage.addListener((msg, sender) => {
+            console.log(msg);
+            if (msg.event === "REOPEN_BOOKMARK") {
+                const t = new Tab(msg.tabId, true, msg.url, msg.title, msg.scroll_pos, msg.id);
+                this.tabs.appendTab(t);
+                return;
+            }
             const tab = this.tabs.findTab(sender.tab.id);
             if (tab != null && tab.getActive()) {
                 tab.setScrollPos(msg.scroll_pos);
@@ -31,7 +37,10 @@ class Bookit {
                             t = new Tab(tab.id, true, tab.url, tab.title, resp.scroll_pos);
                             this.tabs.appendTab(t);
                             t.save();
+                        }).catch((error) => {
+                            console.log(error);
                         })
+
                     } else {
                         t.setTabId(tab.id);
                         t.setActive(true);
@@ -41,14 +50,20 @@ class Bookit {
                         browser.tabs.sendMessage(tab.id, { "event": "REQUEST_SCROLL_POS" }).then((resp) => {
                             t.setScrollPos(resp.scroll_pos);
                             t.save();
+                        }).catch((error) => {
+                            console.log(error);
                         })
-
                     }
                 }
                 this.tabs.deactivateTab(tab.id!);
-            });
+            }).catch((error) => {
+                console.log(error);
+            })
+            ;
     }
 }
 new Bookit();
 
-browser.storage.sync.clear();
+browser.storage.sync.clear().catch((error) => {
+    console.log(error);
+});

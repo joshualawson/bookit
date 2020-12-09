@@ -5,7 +5,8 @@
     "description": "Bookmarks your session and updates the bookmark with every page change and scroll position",
     "permissions": [
         "tabs",
-        "storage"
+        "storage",
+        "*://*/*"
     ],
     "browser_specific_settings": {
         "gecko": {
@@ -14,7 +15,9 @@
     },
     "browser_action": {
         "default_icon": "icons/icon.png",
-        "default_title": "Bookmark It - Marks"
+        "default_title": "Bookit - Marks",
+        "browser_style": true,
+        "default_popup": "src/menu/index.html"
     },
     "page_action": {
         "browser_style": true,
@@ -22,7 +25,7 @@
             "19": "icons/icon.png",
             "38": "icons/icon.png"
         },
-        "default_title": "Bookmark It",
+        "default_title": "Bookit",
         "show_matches": [
             "<all_urls>"
         ]
@@ -39,7 +42,7 @@
                 "<all_urls>"
             ],
             "js": [
-                "scroller.js"
+                "dist/content.js"
             ]
         }
     ]

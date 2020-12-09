@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Bookmark tabs like books firefox extension",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "author": "Joshua Lawson <joshua.anthony.lawson@gmail.com>",
   "license": "ISC",
