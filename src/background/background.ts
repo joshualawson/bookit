@@ -13,10 +13,14 @@ class Bookit {
 
         browser.runtime.onMessage.addListener((msg, sender) => {
             console.log(msg);
-            if (msg.event === "REOPEN_BOOKMARK") {
-                const t = new Tab(msg.tabId, true, msg.url, msg.title, msg.scroll_pos, msg.id);
-                this.tabs.appendTab(t);
-                return;
+            switch (msg.event) {
+                case "REOPEN_BOOKMARK":
+                    const t = new Tab(msg.tabId, true, msg.url, msg.title, msg.scroll_pos, msg.id);
+                    this.tabs.appendTab(t);
+                    return;
+                case "REMOVE_BOOKMARK":
+                    browser.storage.sync.remove(msg.Id as string).then(() => console.log("removed"))
+                    return;
             }
             const tab = this.tabs.findTab(sender.tab.id);
             if (tab != null && tab.getActive()) {
@@ -63,7 +67,3 @@ class Bookit {
     }
 }
 new Bookit();
-
-browser.storage.sync.clear().catch((error) => {
-    console.log(error);
-});
